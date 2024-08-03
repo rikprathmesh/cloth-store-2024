@@ -1,6 +1,5 @@
 import React from "react";
 import DirectoyComponent from "../../components/directory-menu/DirectoyComponent";
-import { Outlet } from "react-router-dom";
 
 const HomeComponent = () => {
   const categories = [
