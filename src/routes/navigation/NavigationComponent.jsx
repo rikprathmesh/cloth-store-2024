@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 import CartDropdownComponent from "../../components/cart-dropdown/CartDropdownComponent";
 import CartIconComponent from "../../components/cart-icon/CartIconComponent";
 import { CartContext } from "../../context/CartContext";
 import { UserContext } from "../../context/UserContext";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
-import "./navigation-styles.scss";
+import { LogoContainer, NavigationContainer, NavLink, NavLinkContainer } from "./navigation-styles.jsx";
 
 const NavigationComponent = () => {
   const { currentUser } = useContext(UserContext);
@@ -21,30 +21,30 @@ const NavigationComponent = () => {
 
   return (
     <>
-      <div className="navigation">
-        <Link className="logo-container" to="/">
+      <NavigationContainer>
+        <LogoContainer to="/">
           <CrwnLogo className="logo">Logo</CrwnLogo>
-        </Link>
-        <div className="links-container">
-          <div className="nav-links-container">
-            <Link className="nav-link" to="/shop">
+        </LogoContainer>
+
+          <NavLinkContainer>
+            <NavLink  to="/shop">
               SHOP
-            </Link>
+            </NavLink>
             {currentUser ? (
-              <span className="nav-link" onClick={signOutUser}>SIGN OUT</span>
+              <NavLink as='span' onClick={signOutUser}>SIGN OUT</NavLink>
             ) : (
-              <Link className="nav-link" to="/auth">
+              <NavLink  to="/auth">
                 SIGN IN
-              </Link>
+              </NavLink>
             )}
             <CartIconComponent />
-          </div>
+          </NavLinkContainer>
           {
             isCartOpen && <CartDropdownComponent />
           }
           
-        </div>
-      </div>
+
+      </NavigationContainer>
       <Outlet />
     </>
   );

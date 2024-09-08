@@ -3,7 +3,7 @@ import {
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup
 } from "../../utils/firebase/firebase.utils";
-import ButtonComponent from "../button/ButtonComponent";
+import ButtonComponent, {BUTTON_TYPE_CLASSES} from "../button/ButtonComponent";
 import FormInputComponent from "../form-input/FormInputComponent";
 import "./signin-form-styles.scss";
 
@@ -90,7 +90,7 @@ const SigninFormComponent = () => {
         />
         <div className="buttons-container">
           <ButtonComponent type="submit">Sign In</ButtonComponent>
-          <ButtonComponent type='button' buttonType="google" onClick={signInWithGoogle}>
+          <ButtonComponent type='button' buttonType={BUTTON_TYPE_CLASSES.google}onClick={signInWithGoogle}>
             Google Sign In
           </ButtonComponent>
         </div>
